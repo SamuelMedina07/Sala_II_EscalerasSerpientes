@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serpientes y Escaleras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="pantalla-principal">
+        <h2>Configuración del Juego</h2>
+        <form id="formulario-jugadores">
+            <label for="jugador1">Jugador 1:</label>
+            <select id="seleccion-jugador1"></select>
+            <label for="jugador2">Jugador 2:</label>
+            <select id="seleccion-jugador2"></select>
+            <label for="dificultad">Dificultad:</label>
+            <select id="dificultad">
+                <option value="facil">Fácil</option>
+                <option value="dificil">Difícil</option>
+            </select>
+            <button type="submit">Iniciar Juego</button>
+        </form>
+        <button id="nuevo-jugador">Agregar Nuevo Jugador</button>
+        <button id="ver-estadisticas">Ver Estadísticas</button>
+    </div>
+
+    <div id="pantalla-juego" style="display: none;">
+        <button id="regresar">Regresar</button>
+        <div id="contenedor-tablero">
+            <div id="tablero"></div>
+            <div id="controles">
+                <button id="lanzar-dado">Lanzar Dado</button>
+                <p id="resultado-dado">Resultado del dado: <span id="numero-dado"></span></p>
+                <p id="turno-jugador">Turno del jugador: <span id="jugador-actual"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-nuevo-jugador" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="cerrar">&times;</span>
+            <h2>Nuevo Jugador</h2>
+            <form id="form-nuevo-jugador">
+                <label for="nombre-nuevo-jugador">Nombre:</label>
+                <input type="text" id="nombre-nuevo-jugador" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-estadisticas" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="cerrar">&times;</span>
+            <h2>Estadísticas de Jugadores</h2>
+            <div id="estadisticas-jugadores"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
