@@ -6,6 +6,7 @@ $(document).ready(function () {
     let nombresJugadores = ["", ""];
     let listaJugadores = [];
     let victoriasJugadores = {};
+    let perdidasJugadores ={};
     let dificultad = "facil";
     let serpientesYEscaleras;
     PrimeraVezJugando()
@@ -110,6 +111,7 @@ $(document).ready(function () {
        document.getElementById("CantidadJugadores").innerHTML = CantJuga;
         listaJugadores.push(nuevoJugador);
         victoriasJugadores[nuevoJugador] = 0;
+        perdidasJugadores[nuevoJugador] = 0;
         actualizarSeleccionJugadores();
       //  $('#modal-nuevo-jugador').hide();
         $('#nombre-nuevo-jugador').val('');
@@ -146,12 +148,17 @@ $(document).ready(function () {
         actualizarTablero();
         if (nuevaPosicion === totalCasillas) {
             alert(`¡${nombresJugadores[jugadorActual - 1]} ha ganado!`);
-            actualizarVictorias(nombresJugadores[jugadorActual - 1]);
+            actualizarVictorias(nombresJugadores[jugadorActual - 1])
+
+            alert(`¡${nombresJugadores[jugadorActual -2 ]} ha perdido!`);
+            actualizarPerdidas(nombresJugadores[jugadorActual -2 ]);
             reiniciarJuego();
             return;
         }
+
         jugadorActual = jugadorActual === 1 ? 2 : 1;
         $('#jugador-actual').text(nombresJugadores[jugadorActual - 1]);
+
     }
 
     function verificarSyE() {
@@ -171,12 +178,20 @@ $(document).ready(function () {
         victoriasJugadores[nombreJugador]++;
         mostrarEstadisticas();
     }
+    function actualizarPerdidas(nombreJugador){
+        perdidasJugadores[nombreJugador]++;
+        mostrarEstadisticas();
+    }
 
     function mostrarEstadisticas() {
+
         $('#estadisticas-jugadores').empty();
         for (const jugador in victoriasJugadores) {
-            $('#estadisticas-jugadores').append(`<p>${jugador}: ${victoriasJugadores[jugador]} victorias</p>`);
+            $('#estadisticas-jugadores').append(`<p>${jugador}= Victorias:${victoriasJugadores[jugador]} Perdidas: ${perdidasJugadores[jugador]}</p> `);
         }
+       
+     
+
     }
 
     function reiniciarJuego() {
