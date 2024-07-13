@@ -9,7 +9,7 @@ $(document).ready(function () {
     let perdidasJugadores ={};
     let dificultad = "facil";
     let serpientesYEscaleras;
-    PrimeraVezJugando()
+    PrimeraVezJugando();
 
     const facilSyE = {
         2: 23,
@@ -29,18 +29,17 @@ $(document).ready(function () {
         76: 27,
         97: 42
     };
-    function PrimeraVezJugando()
-    {
-        document.getElementById("CantidadJugadores").innerHTML = "La cantidad de jugadores inscritos son 0";
 
+    function PrimeraVezJugando() {
+        document.getElementById("CantidadJugadores").innerHTML = "La cantidad de jugadores inscritos son 0";
     }
 
-   function actualizarSeleccionJugadores() {
+    function actualizarSeleccionJugadores() {
         $('#seleccion-jugador1, #seleccion-jugador2').empty();
         listaJugadores.forEach(jugador => {
             $('#seleccion-jugador1, #seleccion-jugador2').append(`<option value="${jugador}">${jugador}</option>`);
         });
-    } 
+    }
 
     $('#formulario-jugadores').submit(function (event) {
         event.preventDefault();
@@ -65,7 +64,6 @@ $(document).ready(function () {
         crearTablero();
         actualizarTablero();
 
-        // Establecer el fondo del tablero según la dificultad
         if (dificultad === "facil") {
             $('#tablero').removeClass('fondo-dificil').addClass('fondo-facil');
         } else {
@@ -74,9 +72,6 @@ $(document).ready(function () {
 
         crearTablero();
         actualizarTablero();
-
-
-
     });
 
     $('#nuevo-jugador').click(function () {
@@ -92,8 +87,6 @@ $(document).ready(function () {
         $('.modal').hide();
     });
 
-   
-    
     $('#form-nuevo-jugador').submit(function (event) {
         event.preventDefault();
         const nuevoJugador = $('#nombre-nuevo-jugador').val().trim();
@@ -107,13 +100,13 @@ $(document).ready(function () {
             alert('Ya existe un jugador con ese nombre.');
             return;
         }
-       let CantJuga = "La cantidad de jugadores inscritos son "+ (listaJugadores.length+1);
-       document.getElementById("CantidadJugadores").innerHTML = CantJuga;
+
+        let CantJuga = "La cantidad de jugadores inscritos son " + (listaJugadores.length + 1);
+        document.getElementById("CantidadJugadores").innerHTML = CantJuga;
         listaJugadores.push(nuevoJugador);
         victoriasJugadores[nuevoJugador] = 0;
         perdidasJugadores[nuevoJugador] = 0;
         actualizarSeleccionJugadores();
-      //  $('#modal-nuevo-jugador').hide();
         $('#nombre-nuevo-jugador').val('');
     });
 
@@ -121,7 +114,6 @@ $(document).ready(function () {
         $('#pantalla-juego').hide();
         $('#pantalla-principal').show();
     });
-    
 
     $('#lanzar-dado').click(function () {
         const resultado = Math.floor(Math.random() * 6) + 1;
@@ -177,6 +169,7 @@ $(document).ready(function () {
     function actualizarVictorias(nombreJugador) {
         victoriasJugadores[nombreJugador]++;
         mostrarEstadisticas();
+        generarGrafico();
     }
     function actualizarPerdidas(nombreJugador){
         perdidasJugadores[nombreJugador]++;
@@ -200,6 +193,30 @@ $(document).ready(function () {
         $('#jugador-actual').text(nombresJugadores[jugadorActual - 1]);
         actualizarTablero();
     }
+
+    function generarGrafico() {
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(grafico);
+
+        function grafico() {
+            const data = new google.visualization.DataTable();
+            data.addColumn('string', 'Jugador');
+            data.addColumn('number', 'Victorias');
+            for (const jugador in victoriasJugadores) {
+                data.addRow([jugador, victoriasJugadores[jugador]]);
+            }
+
+            const options = {
+                title: 'Victorias por Jugador',
+                pieHole: 0.4,
+                width: 800,
+                height: 800
+            };
+
+            const pieChart = new google.visualization.PieChart(document.querySelector('#pieChart div'));
+            pieChart.draw(data, options);
+        }
+    }
+
+    generarGrafico(); // Generar el gráfico inicialmente
 });
-
-
