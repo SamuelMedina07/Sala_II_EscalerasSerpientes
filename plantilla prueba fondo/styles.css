@@ -96,6 +96,9 @@ button:hover {
     font-weight: bold;
    
 }
+#CantidadJugadores{
+    text-align: center;
+}
 
 .jugador1 {
     background-color: rgba(173, 216, 230, 0.8);

@@ -28,14 +28,15 @@
     </div>
 
     <div id="pantalla-juego" style="display: none;">
-        <button id="regresar">Regresar</button>
         <div id="contenedor-tablero">
             <div id="tablero"></div>
             <div id="controles">
                 <button id="lanzar-dado">Lanzar Dado</button>
+                <button id="regresar">Regresar al Menu</button>
                 <p id="resultado-dado">Resultado del dado: <span id="numero-dado"></span></p>
                 <p id="turno-jugador">Turno del jugador: <span id="jugador-actual"></span></p>
             </div>
+           
         </div>
     </div>
 
@@ -43,6 +44,7 @@
         <div class="modal-content">
             <span class="cerrar">&times;</span>
             <h2>Nuevo Jugador</h2>
+            <h4 id="CantidadJugadores"></h4>
             <form id="form-nuevo-jugador">
                 <label for="nombre-nuevo-jugador">Nombre:</label>
                 <input type="text" id="nombre-nuevo-jugador" required>
@@ -50,6 +52,7 @@
             </form>
         </div>
     </div>
+
 
     <div id="modal-estadisticas" class="modal" style="display: none;">
         <div class="modal-content">

@@ -8,6 +8,7 @@ $(document).ready(function () {
     let victoriasJugadores = {};
     let dificultad = "facil";
     let serpientesYEscaleras;
+    PrimeraVezJugando()
 
     const facilSyE = {
         2: 23,
@@ -27,13 +28,18 @@ $(document).ready(function () {
         76: 27,
         97: 42
     };
+    function PrimeraVezJugando()
+    {
+        document.getElementById("CantidadJugadores").innerHTML = "La cantidad de jugadores inscritos son 0";
 
-    function actualizarSeleccionJugadores() {
+    }
+
+   function actualizarSeleccionJugadores() {
         $('#seleccion-jugador1, #seleccion-jugador2').empty();
         listaJugadores.forEach(jugador => {
             $('#seleccion-jugador1, #seleccion-jugador2').append(`<option value="${jugador}">${jugador}</option>`);
         });
-    }
+    } 
 
     $('#formulario-jugadores').submit(function (event) {
         event.preventDefault();
@@ -85,6 +91,8 @@ $(document).ready(function () {
         $('.modal').hide();
     });
 
+   
+    
     $('#form-nuevo-jugador').submit(function (event) {
         event.preventDefault();
         const nuevoJugador = $('#nombre-nuevo-jugador').val().trim();
@@ -98,11 +106,12 @@ $(document).ready(function () {
             alert('Ya existe un jugador con ese nombre.');
             return;
         }
-
+       let CantJuga = "La cantidad de jugadores inscritos son "+ (listaJugadores.length+1);
+       document.getElementById("CantidadJugadores").innerHTML = CantJuga;
         listaJugadores.push(nuevoJugador);
         victoriasJugadores[nuevoJugador] = 0;
         actualizarSeleccionJugadores();
-        $('#modal-nuevo-jugador').hide();
+      //  $('#modal-nuevo-jugador').hide();
         $('#nombre-nuevo-jugador').val('');
     });
 
@@ -110,6 +119,7 @@ $(document).ready(function () {
         $('#pantalla-juego').hide();
         $('#pantalla-principal').show();
     });
+    
 
     $('#lanzar-dado').click(function () {
         const resultado = Math.floor(Math.random() * 6) + 1;
