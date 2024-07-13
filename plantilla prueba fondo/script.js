@@ -7,6 +7,7 @@ $(document).ready(function () {
     let listaJugadores = [];
     let victoriasJugadores = {};
     let perdidasJugadores ={};
+    let partidasJugadas={};
     let dificultad = "facil";
     let serpientesYEscaleras;
     PrimeraVezJugando();
@@ -106,6 +107,7 @@ $(document).ready(function () {
         listaJugadores.push(nuevoJugador);
         victoriasJugadores[nuevoJugador] = 0;
         perdidasJugadores[nuevoJugador] = 0;
+        partidasJugadas[nuevoJugador]=0;
         actualizarSeleccionJugadores();
         $('#nombre-nuevo-jugador').val('');
     });
@@ -142,8 +144,9 @@ $(document).ready(function () {
             alert(`¡${nombresJugadores[jugadorActual - 1]} ha ganado!`);
             actualizarVictorias(nombresJugadores[jugadorActual - 1])
 
-            alert(`¡${nombresJugadores[jugadorActual -2 ]} ha perdido!`);
-            actualizarPerdidas(nombresJugadores[jugadorActual -2 ]);
+
+            alert(`¡${nombresJugadores[jugadorActual]} ha perdido!`);
+            actualizarPerdidas(nombresJugadores[jugadorActual]);
             reiniciarJuego();
             return;
         }
@@ -168,11 +171,13 @@ $(document).ready(function () {
 
     function actualizarVictorias(nombreJugador) {
         victoriasJugadores[nombreJugador]++;
+        partidasJugadas[nombreJugador]++;
         mostrarEstadisticas();
         generarGrafico();
     }
     function actualizarPerdidas(nombreJugador){
         perdidasJugadores[nombreJugador]++;
+        partidasJugadas[nombreJugador]++;
         mostrarEstadisticas();
     }
 
@@ -180,7 +185,8 @@ $(document).ready(function () {
 
         $('#estadisticas-jugadores').empty();
         for (const jugador in victoriasJugadores) {
-            $('#estadisticas-jugadores').append(`<p>${jugador}= Victorias:${victoriasJugadores[jugador]} Perdidas: ${perdidasJugadores[jugador]}</p> `);
+            $('#estadisticas-jugadores').append(`<p>${jugador}= Partidas Jugadas:${partidasJugadas[jugador]}
+                Victorias:${victoriasJugadores[jugador]} Perdidas: ${perdidasJugadores[jugador]}</p> `);
         }
        
      
