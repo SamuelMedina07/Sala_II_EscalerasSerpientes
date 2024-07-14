@@ -143,16 +143,18 @@ $(document).ready(function () {
         if (nuevaPosicion === totalCasillas) {
             alert(`¡${nombresJugadores[jugadorActual - 1]} ha ganado!`);
             actualizarVictorias(nombresJugadores[jugadorActual - 1])
+            alert(`¡${nombresJugadores[jugadorAnterior -1]} ha perdido!`); 
+            actualizarPerdidas(nombresJugadores[jugadorAnterior -1]);   
 
-
-            alert(`¡${nombresJugadores[jugadorActual]} ha perdido!`);
-            actualizarPerdidas(nombresJugadores[jugadorActual]);
             reiniciarJuego();
             return;
         }
-
         jugadorActual = jugadorActual === 1 ? 2 : 1;
+        /* alert('Jugador Actual'+ nombresJugadores[jugadorActual - 1]); */
         $('#jugador-actual').text(nombresJugadores[jugadorActual - 1]);
+        jugadorAnterior = jugadorActual === 2 ? 1 : 2;;
+        /* alert('Jugador Anterior'+ nombresJugadores[jugadorAnterior -1]); */
+        
 
     }
 
