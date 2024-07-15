@@ -10,6 +10,7 @@ $(document).ready(function () {
     let partidasJugadas={};
     let dificultad = "facil";
     let serpientesYEscaleras;
+    let movimientosTotales=0;
     PrimeraVezJugando();
 
     const facilSyE = {
@@ -50,6 +51,8 @@ $(document).ready(function () {
 
     function PrimeraVezJugando() {
         document.getElementById("CantidadJugadores").innerHTML = "La cantidad de jugadores inscritos son 0";
+        
+        
     }
 
     function actualizarSeleccionJugadores() {
@@ -89,7 +92,6 @@ $(document).ready(function () {
             $('#tablero').removeClass('fondo-facil').addClass('fondo-dificil');
             reiniciarJuego();
         }
-
         crearTablero();
         actualizarTablero();
     });
@@ -146,6 +148,7 @@ $(document).ready(function () {
         const resultado = getRandomValue(6,1);
         $('#numero-dado').text(resultado);
         moverJugador(resultado);
+        movimientosTotales++;
     });
 
 
@@ -159,22 +162,31 @@ $(document).ready(function () {
     }
 
     $('#abandonar').click(function () {
-        let confirmResult = confirm(`¿Quieres abandonar ${nombresJugadores[jugadorActual - 1]}?`);
 
-        if (confirmResult) {
-            alert(`${nombresJugadores[jugadorActual - 1]} ha abandonado la partida`);
-            actualizarPerdidas(nombresJugadores[jugadorActual - 1])
-            alert(`¡${nombresJugadores[jugadorAnterior -1]} ha ganado por default!`); 
-            actualizarVictorias(nombresJugadores[jugadorAnterior -1]);   
-
-            reiniciarJuego();
-            $('#pantalla-juego').hide();
-        $('#pantalla-principal').show();
-            
-        } else {
-            alert("¡Continua Jugando!");
+        if (movimientosTotales<2)
+        {
+           alert(`ERROR NO PUEDE ABANDONAR EN SU PRIMER MOVIMIENTO ${nombresJugadores[jugadorActual - 1]} SOLO SE PUEDE ABANDONAR APARTIR DE SU SEGUNDO MOVIMIENTO`); 
         }
-    });
+        else{
+            let confirmResult = confirm(`¿Quieres abandonar ${nombresJugadores[jugadorActual - 1]}?`);
+
+            if (confirmResult) {
+                alert(`${nombresJugadores[jugadorActual - 1]} ha abandonado la partida`);
+                actualizarPerdidas(nombresJugadores[jugadorActual - 1])
+                alert(`¡${nombresJugadores[jugadorAnterior -1]} ha ganado por default!`); 
+                actualizarVictorias(nombresJugadores[jugadorAnterior -1]);   
+    
+                reiniciarJuego();
+                $('#pantalla-juego').hide();
+            $('#pantalla-principal').show();
+                
+            } else {
+                alert("¡Continua Jugando!");
+            }
+    
+
+        }
+           });
 
    
 
