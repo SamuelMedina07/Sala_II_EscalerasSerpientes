@@ -13,22 +13,39 @@ $(document).ready(function () {
     PrimeraVezJugando();
 
     const facilSyE = {
-        2: 23,
-        8: 34,
-        20: 77,
+        3: 21,
+        7: 14,
+        10: 38,
         32: 48,
-        41: 79
+        30: 49,
+        41: 64,
+        59: 86,
+        71: 92,
+        89: 99,
+        97: 78,
+        94: 47,
+        83: 27,
+        
+
     };
 
     const dificilSyE = {
-        2: 23,
-        8: 34,
-        20: 77,
+        3: 21,
+        7: 14,
+        10: 38,
         32: 48,
-        41: 79,
-        74: 92,
-        76: 27,
-        97: 42
+        30: 49,
+        41: 64,
+        59: 86,
+        71: 92,
+        89: 99,
+        97: 78,
+        94: 47,
+        83: 27,
+        69: 17,
+        52: 25,
+        36: 5,
+        32: 1
     };
 
     function PrimeraVezJugando() {
@@ -67,8 +84,10 @@ $(document).ready(function () {
 
         if (dificultad === "facil") {
             $('#tablero').removeClass('fondo-dificil').addClass('fondo-facil');
+            reiniciarJuego();
         } else {
             $('#tablero').removeClass('fondo-facil').addClass('fondo-dificil');
+            reiniciarJuego();
         }
 
         crearTablero();
