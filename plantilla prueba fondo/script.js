@@ -148,6 +148,8 @@ $(document).ready(function () {
         moverJugador(resultado);
     });
 
+
+
     function crearTablero() {
         const $tablero = $('#tablero');
         $tablero.empty();
@@ -155,6 +157,26 @@ $(document).ready(function () {
             $tablero.append(`<div id="casilla-${i}">${i}</div>`);
         }
     }
+
+    $('#abandonar').click(function () {
+        let confirmResult = confirm(`¿Quieres abandonar ${nombresJugadores[jugadorActual - 1]}?`);
+
+        if (confirmResult) {
+            alert(`${nombresJugadores[jugadorActual - 1]} ha abandonado la partida`);
+            actualizarPerdidas(nombresJugadores[jugadorActual - 1])
+            alert(`¡${nombresJugadores[jugadorAnterior -1]} ha ganado por default!`); 
+            actualizarVictorias(nombresJugadores[jugadorAnterior -1]);   
+
+            reiniciarJuego();
+            $('#pantalla-juego').hide();
+        $('#pantalla-principal').show();
+            
+        } else {
+            alert("¡Continua Jugando!");
+        }
+    });
+
+   
 
     function moverJugador(resultado) {
         const posicionActual = posicionesJugadores[jugadorActual - 1];
@@ -165,6 +187,7 @@ $(document).ready(function () {
         posicionesJugadores[jugadorActual - 1] = nuevaPosicion;
         verificarSyE();
         actualizarTablero();
+        
         if (nuevaPosicion === totalCasillas) {
             alert(`¡${nombresJugadores[jugadorActual - 1]} ha ganado!`);
             actualizarVictorias(nombresJugadores[jugadorActual - 1])
@@ -179,9 +202,10 @@ $(document).ready(function () {
         $('#jugador-actual').text(nombresJugadores[jugadorActual - 1]);
         jugadorAnterior = jugadorActual === 2 ? 1 : 2;;
         /* alert('Jugador Anterior'+ nombresJugadores[jugadorAnterior -1]); */
-        
+
 
     }
+
 
     function verificarSyE() {
         const posicion = posicionesJugadores[jugadorActual - 1];

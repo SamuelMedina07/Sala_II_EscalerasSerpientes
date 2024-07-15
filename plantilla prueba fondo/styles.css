@@ -137,6 +137,11 @@ button:hover {
     margin-top: 10px;
 }
 
+#abandonar{
+    background-color: red;
+    color: white;
+}
+
 #resultado-dado,
 #turno-jugador {
     margin-top: 10px;
