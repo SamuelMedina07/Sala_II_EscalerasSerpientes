@@ -117,8 +117,14 @@ $(document).ready(function () {
         $('#pantalla-principal').show();
     });
 
+    function getRandomValue(max, min){
+        valor = parseInt(Math.random() * (max - min) + min);
+        return valor;
+        //alert(valor);
+    }
+
     $('#lanzar-dado').click(function () {
-        const resultado = Math.floor(Math.random() * 6) + 1;
+        const resultado = getRandomValue(6,1);
         $('#numero-dado').text(resultado);
         moverJugador(resultado);
     });
