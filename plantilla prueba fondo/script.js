@@ -8,6 +8,7 @@ $(document).ready(function () {
     let victoriasJugadores = {};
     let perdidasJugadores ={};
     let partidasJugadas={};
+    let partidasAbandonadas={};
     let dificultad = "facil";
     let serpientesYEscaleras;
     let movimientosTotales=0;
@@ -129,6 +130,7 @@ $(document).ready(function () {
         victoriasJugadores[nuevoJugador] = 0;
         perdidasJugadores[nuevoJugador] = 0;
         partidasJugadas[nuevoJugador]=0;
+        partidasAbandonadas[nuevoJugador]=0;
         actualizarSeleccionJugadores();
         $('#nombre-nuevo-jugador').val('');
     });
@@ -173,6 +175,7 @@ $(document).ready(function () {
             if (confirmResult) {
                 alert(`${nombresJugadores[jugadorActual - 1]} ha abandonado la partida`);
                 actualizarPerdidas(nombresJugadores[jugadorActual - 1])
+                actualizarAbandonos(nombresJugadores[jugadorActual - 1])
                 alert(`¡${nombresJugadores[jugadorAnterior -1]} ha ganado por default!`); 
                 actualizarVictorias(nombresJugadores[jugadorAnterior -1]);   
     
@@ -207,6 +210,9 @@ $(document).ready(function () {
             actualizarPerdidas(nombresJugadores[jugadorAnterior -1]);   
 
             reiniciarJuego();
+            $('#pantalla-juego').hide();
+            $('#pantalla-principal').show();
+
             return;
         }
         jugadorActual = jugadorActual === 1 ? 2 : 1;
@@ -243,13 +249,18 @@ $(document).ready(function () {
         partidasJugadas[nombreJugador]++;
         mostrarEstadisticas();
     }
+    function actualizarAbandonos(nombreJugador){
+        partidasAbandonadas[nombreJugador]++;
+        mostrarEstadisticas();
+    }
 
     function mostrarEstadisticas() {
 
         $('#estadisticas-jugadores').empty();
         for (const jugador in victoriasJugadores) {
             $('#estadisticas-jugadores').append(`<p>${jugador}= Partidas Jugadas:${partidasJugadas[jugador]}
-                Victorias:${victoriasJugadores[jugador]} Perdidas: ${perdidasJugadores[jugador]}</p> `);
+                Victorias:${victoriasJugadores[jugador]} Perdidas: ${perdidasJugadores[jugador]}
+                Abandonos: ${partidasAbandonadas[jugador]}</p> `);
         }
        
      
@@ -261,6 +272,7 @@ $(document).ready(function () {
         jugadorActual = 1;
         $('#jugador-actual').text(nombresJugadores[jugadorActual - 1]);
         actualizarTablero();
+
     }
 
     function generarGrafico() {
