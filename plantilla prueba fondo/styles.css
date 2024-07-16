@@ -15,9 +15,9 @@ body {
     padding: 20px;
     border-radius: 10px;
     border: 2px solid #34495e;
-    background-color: #ecf0f1;
+    background-color: #ffffff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
+    max-width: 567px;
     width: 100%;
 }
 
@@ -61,6 +61,7 @@ button {
 button:hover {
     background-color: #2980b9;
     transform: scale(1.05);
+
 }
 
 /*#tablero {
@@ -77,9 +78,9 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 2px;
-    width: 565px;
+    width: 14.9cm;
     /* Ajusta según el tamaño de tu imagen */
-    height: 515px;
+    height: 13.9cm;
     /* Ajusta según el tamaño de tu imagen 
     background: url('images/tablas.png') no-repeat center center;*/
     background-size: cover;
@@ -90,13 +91,14 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000000;
+    border: solid 1 black;
     position: relative;
-    color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0) solid 1;
     font-weight: bold;
-   
+
 }
-#CantidadJugadores{
+
+#CantidadJugadores {
     text-align: center;
 }
 
@@ -112,17 +114,14 @@ button:hover {
 
 
 .fondo-facil {
-    background: url('images/tablas.png') no-repeat center center;
+    background: url('images/facil.png') no-repeat center center;
     background-size: cover;
 }
 
 .fondo-dificil {
-    background: url('images/Dificil.png') no-repeat center center;
+    background: url('images/Dificiil.png') no-repeat center center;
     background-size: cover;
 }
-
-
-
 
 
 
@@ -136,6 +135,11 @@ button:hover {
     padding: 10px 20px;
     font-size: 16px;
     margin-top: 10px;
+}
+
+#abandonar{
+    background-color: red;
+    color: white;
 }
 
 #resultado-dado,
@@ -152,13 +156,24 @@ button:hover {
 }
 
 .jugador1 {
-    background-color: #e74c3c;
+    background: url('images/AXUL.png') no-repeat center center;
     color: white;
+
+    justify-content: center;
+    align-items: center;
+    margin: 1PX;
+    
 }
 
 .jugador2 {
-    background-color: #a5a323;
+    background: url('images/D.png') no-repeat center center;
     color: white;
+    justify-content: center;
+    align-items: center;
+    margin: 1PX;
+    
+
+
 }
 
 .modal {
