@@ -154,7 +154,6 @@ $(document).ready(function () {
     });
 
 
-
     function crearTablero() {
         const $tablero = $('#tablero');
         $tablero.empty();

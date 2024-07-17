@@ -64,25 +64,16 @@ button:hover {
 
 }
 
-/*#tablero {
-    display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-template-rows: repeat(10, 50px);
-    border: 2px solid rgb(52, 73, 94);
-    margin-top: 20px;
-}
 
-*/
 
 #tablero {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 2px;
     width: 14.9cm;
-    /* Ajusta según el tamaño de tu imagen */
+   
     height: 13.9cm;
-    /* Ajusta según el tamaño de tu imagen 
-    background: url('images/tablas.png') no-repeat center center;*/
+ 
     background-size: cover;
     position: relative;
 }
@@ -109,6 +100,7 @@ button:hover {
 
 .jugador2 {
     background-color: rgba(144, 238, 144, 0.8);
+    margin-left: 1cm ;
     /* LightGreen with transparency */
 }
 
@@ -158,10 +150,10 @@ button:hover {
 .jugador1 {
     background: url('images/AXUL.png') no-repeat center center;
     color: white;
-
     justify-content: center;
-    align-items: center;
+    align-items: left;
     margin: 1PX;
+    
     
 }
 
@@ -169,8 +161,9 @@ button:hover {
     background: url('images/D.png') no-repeat center center;
     color: white;
     justify-content: center;
-    align-items: center;
+    align-items: right;
     margin: 1PX;
+    
     
 
 
