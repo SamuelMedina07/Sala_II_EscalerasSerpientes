@@ -271,6 +271,7 @@ $(document).ready(function () {
         posicionesJugadores = [0, 0];
         jugadorActual = 1;
         $('#jugador-actual').text(nombresJugadores[jugadorActual - 1]);
+        movimientosTotales =0;
         actualizarTablero();
 
     }
