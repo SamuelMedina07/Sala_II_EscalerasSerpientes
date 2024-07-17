@@ -147,7 +147,7 @@ $(document).ready(function () {
     }
 
     $('#lanzar-dado').click(function () {
-        const resultado = getRandomValue(6,1);
+        const resultado = getRandomValue(7,1);
         $('#numero-dado').text(resultado);
         moverJugador(resultado);
         movimientosTotales++;
