@@ -306,7 +306,7 @@ $(document).ready(function () {
             }
 
             const options = {
-                title: 'Abandonos por Jugador',
+                title: 'Perdidas por Jugador',
                 pieHole: 0.4,
                 width: 800,
                 height: 800
