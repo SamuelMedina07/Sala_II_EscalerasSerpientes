@@ -277,7 +277,8 @@ $(document).ready(function () {
     function generarGrafico() {
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(grafico);
-
+        google.charts.setOnLoadCallback(graficoP);
+        
         function grafico() {
             const data = new google.visualization.DataTable();
             data.addColumn('string', 'Jugador');
@@ -296,6 +297,25 @@ $(document).ready(function () {
             const pieChart = new google.visualization.PieChart(document.querySelector('#pieChart div'));
             pieChart.draw(data, options);
         }
+        function graficoP() {
+            const data = new google.visualization.DataTable();
+            data.addColumn('string', 'Jugador');
+            data.addColumn('number', 'Perdidas');
+            for (const jugador in perdidasJugadores) {
+                data.addRow([jugador, perdidasJugadores[jugador]]);
+            }
+
+            const options = {
+                title: 'Abandonos por Jugador',
+                pieHole: 0.4,
+                width: 800,
+                height: 800
+            };
+
+            const pieChart = new google.visualization.PieChart(document.querySelector('#pieChartP div'));
+            pieChart.draw(data, options);
+        }
+
     }
 
     generarGrafico(); // Generar el gráfico inicialmente
