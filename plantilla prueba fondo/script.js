@@ -52,8 +52,6 @@ $(document).ready(function () {
 
     function PrimeraVezJugando() {
         document.getElementById("CantidadJugadores").innerHTML = "La cantidad de jugadores inscritos son 0";
-        
-        
     }
 
     function actualizarSeleccionJugadores() {
